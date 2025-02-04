@@ -7,7 +7,9 @@ import androidx.navigation.compose.rememberNavController
 import com.google.firebase.auth.FirebaseAuth
 import net.developermaster.projectbase.screens.HomeScreen
 import net.developermaster.projectbase.screens.LoginScreen
+import net.developermaster.projectbase.screens.RealTimeScreen
 import net.developermaster.projectbase.screens.SplashScreen
+import net.developermaster.projectbase.viewModel.ViewModelProjectBase
 
 
 @Composable
@@ -20,7 +22,7 @@ fun NavigationNavController() {
     NavHost(
         navController = navController, startDestination =
 
-        ScreensObject.SplashScreenObject.route
+        ScreensObject.RealTimeScreenObject.route
 
     ) {
 
@@ -31,18 +33,21 @@ fun NavigationNavController() {
 
         //rota login
         composable(ScreensObject.LoginScreenObject.route) {
-            LoginScreen(
-                autenticacao = FirebaseAuth.getInstance(),
-                navigateToHome = {
+            LoginScreen(autenticacao = FirebaseAuth.getInstance(), navigateToHome = {
 
-                    navController.navigate(ScreensObject.HomeScreensObjectObject.route)
+                navController.navigate(ScreensObject.HomeScreensObjectObject.route)
 
-                })
+            })
         }
 
         //rota splash
         composable(ScreensObject.SplashScreenObject.route) {
             SplashScreen(navController)
+        }
+
+        //rota real time
+        composable(ScreensObject.RealTimeScreenObject.route) {
+            RealTimeScreen(ViewModelProjectBase(),  navController)
         }
 
 

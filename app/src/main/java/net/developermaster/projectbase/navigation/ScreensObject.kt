@@ -10,4 +10,8 @@ sealed class ScreensObject(val route: String) {
     data object LoginScreenObject : ScreensObject("LoginScreen")
 
     //rota splash
-    data object SplashScreenObject : ScreensObject("SplashScreen")}
+    data object SplashScreenObject : ScreensObject("SplashScreen")
+
+    //rota real time
+    data object RealTimeScreenObject : ScreensObject("RealTimeScreen")
+}
