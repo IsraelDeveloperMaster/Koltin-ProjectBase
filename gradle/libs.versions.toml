@@ -29,6 +29,7 @@ firebaseCrashlyticsBuildtools = "3.0.2"
 firebaseBom = "33.8.0"
 composeMaterial = "1.4.0"
 
+
 [libraries]
 
 #swipe
@@ -47,9 +48,11 @@ firebase-storage-ktx = { group = "com.google.firebase", name = "firebase-storage
 firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "firebase-crashlytics-buildtools", version.ref = "firebaseCrashlyticsBuildtools" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebase-auth = {module = "com.google.firebase:firebase-auth-ktx" }
+
+
+
 androidx-compose-material = { group = "androidx.wear.compose", name = "compose-material", version.ref = "composeMaterial" }
-
-
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -69,6 +72,8 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 
 #parcelize
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize",  version.ref = "kotlin_Parcelize"  }
+
+
 
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

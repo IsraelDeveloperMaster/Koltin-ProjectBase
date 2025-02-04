@@ -16,7 +16,7 @@ android {
 
     defaultConfig {
         applicationId = "net.developermaster.projectbase"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -76,6 +76,7 @@ dependencies {
     implementation(libs.firebase.database)
     implementation(libs.firebase.storage.ktx)
     implementation(libs.firebase.crashlytics.buildtools)
+    implementation(libs.firebase.auth)
 
     //swipe
     implementation (libs.accompanist.swiperefresh)
