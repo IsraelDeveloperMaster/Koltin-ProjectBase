@@ -1,5 +1,5 @@
 [versions]
-agp = "8.8.0"
+agp = "8.8.1"
 kotlin = "2.1.0"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -73,6 +73,8 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 firebase-config-ktx = { group = "com.google.firebase", name = "firebase-config-ktx", version.ref = "firebaseConfigKtx" }
 core-ktx = { group = "androidx.test", name = "core-ktx", version.ref = "coreKtxVersion" }
+ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 
 [plugins]
 

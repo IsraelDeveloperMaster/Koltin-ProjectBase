@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import net.developermaster.projectbase.navigation.NavigationNavController
+import net.developermaster.projectbase.screens.UiScreenEstudo
 
 class MainActivity : ComponentActivity() {
 
@@ -29,7 +30,9 @@ class MainActivity : ComponentActivity() {
 
                 MaterialTheme {
 
-                    NavigationNavController()
+//                    NavigationNavController()
+
+                    UiScreenEstudo(onClick = {})
                 }
             }
         }
