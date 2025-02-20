@@ -57,6 +57,8 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.firebase.config.ktx)
     implementation(libs.core.ktx)
+    implementation(libs.androidx.benchmark.common)
+    implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -89,4 +91,17 @@ dependencies {
     implementation(libs.ui.tooling.preview)
     debugImplementation(libs.ui.tooling)
 
+    //coil
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
+
+    implementation(libs.accompanist.pager.indicators)
+    implementation(libs.accompanist.pager)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.runtime.livedata)
+    implementation(libs.glide)
+    implementation(libs.gson)
+    implementation (libs.androidx.constraintlayout.compose)
+    implementation (libs.androidx.foundation)
 }
+
