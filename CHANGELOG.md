@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/IsraelDeveloperMaster/Koltin-ProjectBase/compare/v1.3.0...v1.4.0) (2025-02-20)
+
+
+### Features
+
+* Refactor and Enhance UI Shop Screens ([bd43894](https://github.com/IsraelDeveloperMaster/Koltin-ProjectBase/commit/bd438944bdcc14b0dc9b2b3451b040ca7cce9afa))
+
 ## [1.3.0](https://github.com/IsraelDeveloperMaster/Koltin-ProjectBase/compare/v1.2.0...v1.3.0) (2025-02-20)
 
 
