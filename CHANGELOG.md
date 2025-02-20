@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/IsraelDeveloperMaster/Koltin-ProjectBase/compare/v1.1.0...v1.2.0) (2025-02-20)
+
+
+### Features
+
+* Implement UI Study Screens with Banner Integration ([c1d13bf](https://github.com/IsraelDeveloperMaster/Koltin-ProjectBase/commit/c1d13bf44d367a2cab4fa3334d6e605bb136b8bc))
+
 ## [1.1.0](https://github.com/IsraelDeveloperMaster/Koltin-ProjectBase/compare/v1.0.0...v1.1.0) (2025-02-04)
 
 
