@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/IsraelDeveloperMaster/Koltin-ProjectBase/compare/v1.2.0...v1.3.0) (2025-02-20)
+
+
+### Features
+
+* Implement UI Screens for Shop and Enhance Navigation ([b72f856](https://github.com/IsraelDeveloperMaster/Koltin-ProjectBase/commit/b72f856abda54f3ecb4742d1bc2d28957a8c5bb7))
+
 ## [1.2.0](https://github.com/IsraelDeveloperMaster/Koltin-ProjectBase/compare/v1.1.0...v1.2.0) (2025-02-20)
 
 
