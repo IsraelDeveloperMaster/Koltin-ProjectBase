@@ -1,6 +1,13 @@
+/*
+ * *
+ *  * Created by rael on 20/02/2025 20:55
+ *  * Copyright (c) 2025 . All rights reserved.
+ *  * Last modified 20/02/2025 20:43
+ *
+ */
+
 package net.developermaster.projectbase.estudoUI.estudoUiShop
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -39,7 +46,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.input.key.Key.Companion.I
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
@@ -55,18 +61,23 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import net.developermaster.projectbase.R
-import net.developermaster.projectbase.model.ModelUiScreenShopBanner
-import net.developermaster.projectbase.model.ModelUiScreenShopCategoria
-import net.developermaster.projectbase.viewModel.ViewModelUiScreenShopEstudo
+import net.developermaster.projectbase.estudoUI.estudoUiShop.model.ModelUiScreenShopBanner
+import net.developermaster.projectbase.estudoUI.estudoUiShop.model.ModelUiScreenShopCategoria
+import net.developermaster.projectbase.estudoUI.estudoUiShop.model.ModelUiScreenShopItems
+import net.developermaster.projectbase.estudoUI.estudoUiShop.viewModel.ViewModelUiScreenShopEstudo
 
 @Composable
 internal fun UiScreenShopEstudo2(navController: NavHostController) {
 
     val viewModel = ViewModelUiScreenShopEstudo()
     val banners = remember { mutableStateListOf<ModelUiScreenShopBanner>() }
-    val categorias = remember { mutableStateListOf<ModelUiScreenShopCategoria>() }
     var showBannerLoading by remember { mutableStateOf(true) }
+
+    val categorias = remember { mutableStateListOf<ModelUiScreenShopCategoria>() }
     var showCategoryLoading by remember { mutableStateOf(true) }
+
+    val recomemded = remember { mutableStateListOf<ModelUiScreenShopItems>() }
+    var showRcomemdedLoading by remember { mutableStateOf(true) }
 
     //banner
     LaunchedEffect(Unit) {
@@ -87,6 +98,17 @@ internal fun UiScreenShopEstudo2(navController: NavHostController) {
             showCategoryLoading = false
         }
     }
+
+    //recommended
+    LaunchedEffect(Unit) {
+        viewModel.loadRecommended()
+        viewModel.recommended.observeForever {
+            recomemded.clear()
+            recomemded.addAll(it)
+            showRcomemdedLoading = false
+        }
+    }
+
 
     LazyColumn(
         modifier = Modifier
@@ -147,12 +169,12 @@ internal fun UiScreenShopEstudo2(navController: NavHostController) {
                 }
             } else {
 
-                BannerList2(banners)
+                ListaBanners(banners)
             }
         }
         item {
 
-            SelectionTitle2(
+            SecaoTitulo(
                 title = "Popular Products",
                 actionText = "View All"
             )
@@ -164,19 +186,43 @@ internal fun UiScreenShopEstudo2(navController: NavHostController) {
                         .height(50.dp)
                         .fillMaxSize(),
                     contentAlignment = Alignment.Center
+
                 ) {
                     CircularProgressIndicator()
                 }
             } else {
-                CategoryList2(categorias)
-
+                ListaCategorias(categorias)
             }
         }
+        item {
+            SecaoTitulo(
+                title = "Recommended",
+                actionText = "View All"
+            )
+        }
+        item {
+            if (showRcomemdedLoading) {
+                Box(
+                    modifier = Modifier
+                        .height(200.dp)
+                        .fillMaxSize(),
+                    contentAlignment = Alignment.Center
+
+                ) {
+                    CircularProgressIndicator()
+                }
+            } else {
+
+                ListaItemsShop(recomemded)
+            }
+        }
+
+        item { Spacer(modifier = Modifier.height(100.dp)) }
     }
 }
 
 @Composable
-fun CategoryList2(categorias: SnapshotStateList<ModelUiScreenShopCategoria>) {
+fun ListaCategorias(categorias: SnapshotStateList<ModelUiScreenShopCategoria>) {
     var selectedItem by remember { mutableStateOf(-1) }
 
     LazyRow(
@@ -187,7 +233,7 @@ fun CategoryList2(categorias: SnapshotStateList<ModelUiScreenShopCategoria>) {
 
     ) {
         items(categorias.size) { index ->
-            CategoryItem2(
+            CategoriaItems(
                 item = categorias[index],
                 isSelected = selectedItem == index,
                 onClick = {
@@ -199,7 +245,7 @@ fun CategoryList2(categorias: SnapshotStateList<ModelUiScreenShopCategoria>) {
 }
 
 @Composable
-fun CategoryItem2(item: ModelUiScreenShopCategoria, isSelected: Boolean, onClick: () -> Unit, ) {
+fun CategoriaItems(item: ModelUiScreenShopCategoria, isSelected: Boolean, onClick: () -> Unit) {
     Row(
         modifier = Modifier
             .padding(8.dp)
@@ -242,7 +288,7 @@ fun CategoryItem2(item: ModelUiScreenShopCategoria, isSelected: Boolean, onClick
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun BannerList2(banner: List<ModelUiScreenShopBanner>) {
+fun ListaBanners(banner: List<ModelUiScreenShopBanner>) {
     Carousel2(modifier = Modifier, banner = banner)
 }
 
@@ -298,7 +344,7 @@ fun PointIndicator(
 
     ) {
         items(totalDots) { index ->
-            CircleIndicator(
+            IndicatorPoint(
                 modifier = Modifier.padding(4.dp),
                 color = if (index == selectedIndex) selectedColor else unSelectedColor,
                 size = dotSize
@@ -311,7 +357,7 @@ fun PointIndicator(
 }
 
 @Composable
-fun CircleIndicator(
+fun IndicatorPoint(
     modifier: Modifier = Modifier,
     color: Color,
     size: Dp
@@ -326,7 +372,7 @@ fun CircleIndicator(
 }
 
 @Composable
-fun SelectionTitle2(
+fun SecaoTitulo(
     title: String,
     modifier: Modifier = Modifier,
     actionText: String,
@@ -344,7 +390,7 @@ fun SelectionTitle2(
             modifier = modifier.padding(16.dp),
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
-            color = colorResource(R.color.black)
+            color = colorResource(R.color.black),
         )
         Text(
             text = actionText,
@@ -353,5 +399,6 @@ fun SelectionTitle2(
             fontWeight = FontWeight.Bold,
             color = colorResource(R.color.purple)
         )
+
     }
 }

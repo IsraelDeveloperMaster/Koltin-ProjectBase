@@ -3,7 +3,9 @@ package net.developermaster.projectbase.navigation
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -64,12 +66,18 @@ fun NavigationNavController() {
             //transições de entrada
             enterTransition = {
                 slideIntoContainer(
-                    AnimatedContentTransitionScope.SlideDirection.Right,
-                    tween(500)
-                ) + fadeIn() + scaleIn(tween(500))
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    tween(200)
+                ) + scaleIn(tween(200)) + fadeIn()
             },
 
             //transições de saída
+            exitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    tween(200)
+                ) + scaleOut(tween(200)) + fadeOut()
+            }
         )
 
         {
@@ -77,7 +85,25 @@ fun NavigationNavController() {
         }
 
         //rota ui screen estudo shop 2
-        composable(ScreensObject.UiScreenShopEstudo2.route) {
+        composable(ScreensObject.UiScreenShopEstudo2.route,
+
+            //transições de entrada
+            enterTransition = {
+                slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    tween(200)
+                ) + scaleIn(tween(200)) + fadeIn()
+            },
+
+            //transições de saída
+            exitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    tween(200)
+
+                ) + scaleOut(tween(200)) + fadeOut()
+            }
+            ) {
             UiScreenShopEstudo2(navController)
         }
 

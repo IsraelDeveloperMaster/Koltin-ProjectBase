@@ -53,9 +53,9 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import net.developermaster.projectbase.R
-import net.developermaster.projectbase.model.ModelUiScreenShopBanner
-import net.developermaster.projectbase.model.ModelUiScreenShopCategoria
-import net.developermaster.projectbase.viewModel.ViewModelUiScreenShopEstudo
+import net.developermaster.projectbase.estudoUI.estudoUiShop.model.ModelUiScreenShopBanner
+import net.developermaster.projectbase.estudoUI.estudoUiShop.model.ModelUiScreenShopCategoria
+import net.developermaster.projectbase.estudoUI.estudoUiShop.viewModel.ViewModelUiScreenShopEstudo
 
 @Composable
 internal fun UiScreenShopEstudo3(navController: NavHostController) {

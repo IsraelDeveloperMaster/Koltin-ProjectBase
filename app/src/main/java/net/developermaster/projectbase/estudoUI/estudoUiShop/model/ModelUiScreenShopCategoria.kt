@@ -1,6 +1,4 @@
-package net.developermaster.projectbase.model
-
-import okhttp3.HttpUrl
+package net.developermaster.projectbase.estudoUI.estudoUiShop.model
 
 data class ModelUiScreenShopCategoria(
     val title: String = "",

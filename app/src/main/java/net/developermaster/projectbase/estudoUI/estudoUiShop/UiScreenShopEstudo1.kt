@@ -1,3 +1,11 @@
+/*
+ * *
+ *  * Created by rael on 20/02/2025 20:54
+ *  * Copyright (c) 2025 . All rights reserved.
+ *  * Last modified 20/02/2025 19:36
+ *
+ */
+
 package net.developermaster.projectbase.estudoUI.estudoUiShop
 
 import androidx.compose.foundation.Image
