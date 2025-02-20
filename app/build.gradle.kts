@@ -84,4 +84,9 @@ dependencies {
 
     //swipe
     implementation (libs.accompanist.swiperefresh)
+
+    // Android Studio Preview support
+    implementation(libs.ui.tooling.preview)
+    debugImplementation(libs.ui.tooling)
+
 }

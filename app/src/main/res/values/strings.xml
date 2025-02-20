@@ -1,3 +1,17 @@
 <resources>
-    <string name="app_name">Project-Base</string>
+    <string name="app_name">Project Base</string>
+
+    <string name="intro_title">
+        Welcome to <font color="#39c7a5">Digital Store</font>\n
+        a <font color="#39c7a5">Gateway</font> to the Lastest Technology
+        </string>
+
+    <string name="intro_sub_title">Sing in to explore a wide range of our products. Don`t have an account? Sign up now
+    and secure shopping experience</string>
+
+    <string name="let_go">Let`s Get Started</string>
+
+    <string name="alread_account">Already have an account?</string>
+
+
 </resources>
