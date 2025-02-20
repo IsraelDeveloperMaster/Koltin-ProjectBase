@@ -1,4 +1,12 @@
-package net.developermaster.projectbase.viewModel
+/*
+ * *
+ *  * Created by rael on 20/02/2025 22:30
+ *  * Copyright (c) 2025 . All rights reserved.
+ *  * Last modified 20/02/2025 21:52
+ *
+ */
+
+package net.developermaster.projectbase.estudoUI.estudoUiShop.viewModel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -7,19 +15,24 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
-import net.developermaster.projectbase.model.ModelUiScreenShopBanner
-import net.developermaster.projectbase.model.ModelUiScreenShopCategoria
+import net.developermaster.projectbase.estudoUI.estudoUiShop.model.ModelUiScreenShopBanner
+import net.developermaster.projectbase.estudoUI.estudoUiShop.model.ModelUiScreenShopCategoria
+import net.developermaster.projectbase.estudoUI.estudoUiShop.model.ModelUiScreenShopItems
 
 class ViewModelUiScreenShopEstudo : ViewModel() {
 
     private val firebaseDatabase = FirebaseDatabase.getInstance()
 
-    val _categoria = MutableLiveData<MutableList<ModelUiScreenShopCategoria>>()
+    private val _categoria = MutableLiveData<MutableList<ModelUiScreenShopCategoria>>()
     val categoria: LiveData<MutableList<ModelUiScreenShopCategoria>> = _categoria
 
     private val _banner = MutableLiveData<List<ModelUiScreenShopBanner>>()
     val banner: LiveData<List<ModelUiScreenShopBanner>> = _banner
+
+    private val _recommended = MutableLiveData<MutableList<ModelUiScreenShopItems>>()
+    val recommended: LiveData<MutableList<ModelUiScreenShopItems>> = _recommended
 
     fun loadBanner() {
 
@@ -72,6 +85,33 @@ class ViewModelUiScreenShopEstudo : ViewModel() {
 
             override fun onCancelled(error: DatabaseError) {
 
+            }
+        })
+    }
+
+    fun loadRecommended() {
+
+        val ref = firebaseDatabase.getReference("Items")
+        val query : Query = ref.orderByChild("showRecommended").equalTo(true)
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                val lista = mutableListOf<ModelUiScreenShopItems>()
+
+                for (children in snapshot.children) {
+
+                    val model = children.getValue(ModelUiScreenShopItems::class.java)
+
+                    if (model != null) {
+
+                        lista.add(model)
+                    }
+                }
+                _recommended.value = lista
+            }
+
+            override fun onCancelled(error: DatabaseError) {
             }
         })
     }
