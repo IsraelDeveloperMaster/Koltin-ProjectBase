@@ -1,4 +1,4 @@
-package net.developermaster.projectbase.screens
+package net.developermaster.projectbase.screens.EstudoUI.EstudoUi2
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -26,11 +26,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import net.developermaster.projectbase.R
+import net.developermaster.projectbase.navigation.ScreensObject
 
 @Composable
-fun UiScreenEstudo(onClick: () -> Unit = {}) {
-    println("UiScreenEstudo1")
+fun UiScreenEstudo1_2(navController: NavHostController) {
 
     Column(
         modifier = Modifier
@@ -74,7 +75,11 @@ fun UiScreenEstudo(onClick: () -> Unit = {}) {
         )
 
         Button(
-            onClick = { onClick() },
+
+            onClick = {
+
+                navController.navigate(ScreensObject.UiScreenEstudo3.route)
+            },
             modifier = Modifier
                 .padding(horizontal = 32.dp, vertical = 16.dp)
                 .fillMaxWidth()
