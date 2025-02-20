@@ -3,9 +3,7 @@ package net.developermaster.projectbase.navigation
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
-import androidx.compose.animation.scaleOut
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -15,10 +13,9 @@ import net.developermaster.projectbase.screens.HomeScreen
 import net.developermaster.projectbase.screens.LoginScreen
 import net.developermaster.projectbase.screens.RealTimeScreen
 import net.developermaster.projectbase.screens.SplashScreen
-import net.developermaster.projectbase.screens.EstudoUI.EstudoUi1.UiScreenEstudo1_1
-import net.developermaster.projectbase.screens.EstudoUI.EstudoUi1.UiScreenEstudo2_1
-import net.developermaster.projectbase.screens.EstudoUI.EstudoUi1.UiScreenEstudo3_1
-import net.developermaster.projectbase.screens.EstudoUI.EstudoUi2.UiScreenEstudo3_2
+import net.developermaster.projectbase.estudoUI.estudoUiShop.UiScreenShopEstudo1
+import net.developermaster.projectbase.estudoUI.estudoUiShop.UiScreenShopEstudo2
+import net.developermaster.projectbase.estudoUI.estudoUiShop.UiScreenShopEstudo3
 import net.developermaster.projectbase.viewModel.ViewModelProjectBase
 
 
@@ -33,7 +30,7 @@ fun NavigationNavController() {
         navController =
         navController,
         startDestination =
-        ScreensObject.UiScreenEstudo1.route
+        ScreensObject.UiScreenShopEstudo1.route
 
     ) {
 
@@ -58,62 +55,50 @@ fun NavigationNavController() {
 
         //rota real time
         composable(ScreensObject.RealTimeScreenObject.route) {
-            RealTimeScreen(ViewModelProjectBase(),  navController)
+            RealTimeScreen(ViewModelProjectBase(), navController)
         }
 
-        //rota ui screen estudo 1
-        composable(ScreensObject.UiScreenEstudo1.route,
+        //rota ui screen estudo shop 1
+        composable(ScreensObject.UiScreenShopEstudo1.route,
 
             //transições de entrada
             enterTransition = {
                 slideIntoContainer(
-                    AnimatedContentTransitionScope.SlideDirection.Left,
-                    tween(200)
-                ) + fadeIn()
+                    AnimatedContentTransitionScope.SlideDirection.Right,
+                    tween(500)
+                ) + fadeIn() + scaleIn(tween(500))
             },
 
             //transições de saída
-            exitTransition = {
-                slideOutOfContainer(
-                    AnimatedContentTransitionScope.SlideDirection.Right,
-                    tween(200)
-                ) + fadeOut()
-            })
+        )
 
         {
-            UiScreenEstudo1_1(navController)
+            UiScreenShopEstudo1(navController)
         }
 
-        //rota ui screen estudo 2
-        composable(ScreensObject.UiScreenEstudo2.route) {
-            UiScreenEstudo2_1(navController)
+        //rota ui screen estudo shop 2
+        composable(ScreensObject.UiScreenShopEstudo2.route) {
+            UiScreenShopEstudo2(navController)
         }
 
-        //rota ui screen estudo 3
-        composable(ScreensObject.UiScreenEstudo3.route,
+        //rota ui screen estudo shop 3
+        composable(ScreensObject.UiScreenShopEstudo3.route,
 
             //transições de entrada
             enterTransition = {
                 slideIntoContainer(
                     AnimatedContentTransitionScope.SlideDirection.Right,
-                    tween(200)
+                    tween(500)
 //                ) + slideInHorizontally(tween(200)) + fadeIn()
-                ) + scaleIn(tween(200)) + fadeIn()
-//                )  + fadeIn()
+//                ) + scaleIn(tween(200)) + fadeIn()
+                ) + fadeIn() + scaleIn(tween(500))
             },
 
             //transições de saída
-            exitTransition = {
-                slideOutOfContainer(
-                    AnimatedContentTransitionScope.SlideDirection.Right,
-                    tween(200)
-//                ) + slideOutHorizontally(tween(200)) + fadeOut()
-                ) + scaleOut(tween(200)) + fadeOut()
-//                ) + fadeOut()
-            })
+        )
 
         {
-            UiScreenEstudo3_2(navController)
+            UiScreenShopEstudo3(navController)
         }
 
 
