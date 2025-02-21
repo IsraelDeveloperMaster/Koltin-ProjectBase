@@ -1,16 +1,13 @@
 /*
  * *
- *  * Created by rael on 21/02/2025 22:06
+ *  * Created by rael on 21/02/2025 23:27
  *  * Copyright (c) 2025 . All rights reserved.
- *  * Last modified 21/02/2025 21:42
+ *  * Last modified 21/02/2025 23:27
  *
  */
 
-package net.developermaster.projectbase.estudoUI.estudoUiShop
+package net.developermaster.projectbase.estudoUI.estudoUiShop.views
 
-import android.os.Bundle
-import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -27,6 +24,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -38,34 +36,17 @@ import androidx.navigation.NavHostController
 import net.developermaster.projectbase.R
 import net.developermaster.projectbase.estudoUI.estudoUiShop.viewModel.ViewModelUiScreenShopEstudo
 
-class ListItemsUIShopEstudo(navController: NavHostController) : AppCompatActivity()
-/*
+@Composable
+internal fun UiScreenShopEstudo3( navController: NavHostController, id: String, title: String, ) {
 
+     val viewModel = ViewModelUiScreenShopEstudo()
 
-{
-
-    private val viewModel = ViewModelUiScreenShopEstudo()
-    private var id: String = ""
-    private var title: String = ""
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        id = intent.getStringExtra("id") ?: ""
-        title = intent.getStringExtra("title") ?: ""
-
-        setContent {
-
-            ListItemsUIShop(
-
-                title = title,
-                onBack = { finish() },
-                viewModel = viewModel,
-                id = id
-            )
-
-        }
-    }
+    ListItemsUIShop(
+        title = title,
+        onBack = { },
+        viewModel = viewModel,
+        id = id
+    )
 }
 
 @Composable
@@ -79,7 +60,7 @@ fun ListItemsUIShop(
     var isLoading by remember { mutableStateOf(true) }
 
     LaunchedEffect(id) {
-        viewModel.loadRecommended()
+        viewModel.loadFiltred(id)
     }
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -92,6 +73,7 @@ fun ListItemsUIShop(
             Text(
                 text = title,
                 modifier = Modifier
+                    .padding(start = 120.dp)
                     .constrainAs(cartTxt) {
                         centerTo(parent)
                     },
@@ -113,18 +95,22 @@ fun ListItemsUIShop(
             )
         }
         if (isLoading) {
-            Spacer (modifier = Modifier.height(300.dp))
-            CircularProgressIndicator()
+
+            Column(modifier = Modifier
+                .fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally) {
+                Spacer(modifier = Modifier.height(300.dp))
+                CircularProgressIndicator()
+            }
+
         } else {
-            ListaItemsShop(items)
+
+            ListarItemsShopFullSize(items)
         }
     }
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(items) {
         isLoading = items.isEmpty()
     }
 }
 
-
-
-*/

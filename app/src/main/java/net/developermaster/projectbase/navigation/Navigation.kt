@@ -17,9 +17,10 @@ import net.developermaster.projectbase.screens.HomeScreen
 import net.developermaster.projectbase.screens.LoginScreen
 import net.developermaster.projectbase.screens.RealTimeScreen
 import net.developermaster.projectbase.screens.SplashScreen
-import net.developermaster.projectbase.estudoUI.estudoUiShop.UiScreenShopEstudo1
-import net.developermaster.projectbase.estudoUI.estudoUiShop.UiScreenShopEstudo2
-import net.developermaster.projectbase.estudoUI.estudoUiShop.UiScreenShopEstudo3
+import net.developermaster.projectbase.estudoUI.estudoUiShop.views.UiScreenShopEstudo1
+import net.developermaster.projectbase.estudoUI.estudoUiShop.views.UiScreenShopEstudo2
+import net.developermaster.projectbase.estudoUI.estudoUiShop.views.UiScreenShopEstudo3
+import net.developermaster.projectbase.estudoUI.estudoUiShop.views.UiScreenShopEstudo4
 import net.developermaster.projectbase.viewModel.ViewModelProjectBase
 
 
@@ -110,45 +111,13 @@ fun NavigationNavController() {
         }
 
         //rota ui screen estudo shop 3
-        /*composable(
-            ScreensObject.UiScreenShopEstudo3.route + "/{title}/{id}",
-            arguments = listOf(navArgument("id") {
-                type = NavType.StringType
-           } ),
-            arguments = listOf(navArgument("title") {
-                type = NavType.StringType
-            } ),
-
-            //transições de entrada
-            enterTransition = {
-                slideIntoContainer(
-                    AnimatedContentTransitionScope.SlideDirection.Right,
-                    tween(500)
-//                ) + slideInHorizontally(tween(200)) + fadeIn()
-//                ) + scaleIn(tween(200)) + fadeIn()
-                ) + fadeIn() + scaleIn(tween(500))
-            },
-
-            //transições de saída
-        )
-
-        {
-            UiScreenShopEstudo3(navController,
-                it.arguments?.getString("id") ?: "",
-                it.arguments?.getString("title") ?: "",
-
-        }*/
-
-
-        //rota select screen options
         composable(
             ScreensObject.UiScreenShopEstudo3.route + "/{id}/{title}",
             arguments = listOf(navArgument("id") {
                 type = NavType.StringType
             }, navArgument("title") {
                 type = NavType.StringType
-            })
-            ,
+            }),
 
             //transições de entrada
             enterTransition = {
@@ -174,6 +143,29 @@ fun NavigationNavController() {
                 // argumentos 2
                 it.arguments?.getString("title") ?: "",
             )
+        }
+
+        //rota ui screen estudo shop 4
+        composable(ScreensObject.UiScreenShopEstudo4.route,
+
+            //transições de entrada
+            enterTransition = {
+                slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    tween(200)
+                ) + scaleIn(tween(200)) + fadeIn()
+            },
+
+            //transições de saída
+            exitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    tween(200)
+
+                ) + scaleOut(tween(200)) + fadeOut()
+            }
+        ) {
+            UiScreenShopEstudo4(navController)
         }
     }
 }

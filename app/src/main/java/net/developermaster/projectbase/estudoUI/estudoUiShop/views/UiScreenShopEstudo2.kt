@@ -1,12 +1,12 @@
 /*
  * *
- *  * Created by rael on 20/02/2025 20:55
+ *  * Created by rael on 21/02/2025 23:27
  *  * Copyright (c) 2025 . All rights reserved.
- *  * Last modified 20/02/2025 20:43
+ *  * Last modified 21/02/2025 23:27
  *
  */
 
-package net.developermaster.projectbase.estudoUI.estudoUiShop
+package net.developermaster.projectbase.estudoUI.estudoUiShop.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -217,7 +217,7 @@ internal fun UiScreenShopEstudo2(navController: NavHostController) {
                 }
             } else {
 
-                ListaItemsShop(recommended)
+                ListarItemsShop(recommended)
             }
         }
 
