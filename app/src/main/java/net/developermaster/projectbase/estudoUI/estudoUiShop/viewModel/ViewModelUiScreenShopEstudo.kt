@@ -54,8 +54,8 @@ class ViewModelUiScreenShopEstudo : ViewModel() {
                 }
                 _banner.value = lista
 
-/*                Log.d("TAGBANNER", "VIEWMODEL: ${lista[0].url}")
-                Log.d("TAGBANNER", "VIEWMODEL: ${lista[1].url}")*/
+                /*                Log.d("TAGBANNER", "VIEWMODEL: ${lista[0].url}")
+                                Log.d("TAGBANNER", "VIEWMODEL: ${lista[1].url}")*/
             }
             override fun onCancelled(error: DatabaseError) {
             }
@@ -90,6 +90,33 @@ class ViewModelUiScreenShopEstudo : ViewModel() {
     }
 
     fun loadRecommended() {
+
+        val ref = firebaseDatabase.getReference("Items")
+        val query : Query = ref.orderByChild("showRecommended").equalTo(true)
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                val lista = mutableListOf<ModelUiScreenShopItems>()
+
+                for (children in snapshot.children) {
+
+                    val model = children.getValue(ModelUiScreenShopItems::class.java)
+
+                    if (model != null) {
+
+                        lista.add(model)
+                    }
+                }
+                _recommended.value = lista
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+    }
+
+    fun loadFiltred() {
 
         val ref = firebaseDatabase.getReference("Items")
         val query : Query = ref.orderByChild("showRecommended").equalTo(true)
