@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/IsraelDeveloperMaster/Koltin-ProjectBase/compare/v1.4.0...v1.5.0) (2025-02-21)
+
+
+### Features
+
+* Update dependencies and UI components ([8f8706e](https://github.com/IsraelDeveloperMaster/Koltin-ProjectBase/commit/8f8706e6f15ddc7d30f81bbbdb2eed81e64b8ae3))
+
 ## [1.4.0](https://github.com/IsraelDeveloperMaster/Koltin-ProjectBase/compare/v1.3.0...v1.4.0) (2025-02-20)
 
 
