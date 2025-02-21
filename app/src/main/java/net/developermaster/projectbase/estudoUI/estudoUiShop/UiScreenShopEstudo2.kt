@@ -31,11 +31,13 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -46,6 +48,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
@@ -65,6 +68,7 @@ import net.developermaster.projectbase.estudoUI.estudoUiShop.model.ModelUiScreen
 import net.developermaster.projectbase.estudoUI.estudoUiShop.model.ModelUiScreenShopCategoria
 import net.developermaster.projectbase.estudoUI.estudoUiShop.model.ModelUiScreenShopItems
 import net.developermaster.projectbase.estudoUI.estudoUiShop.viewModel.ViewModelUiScreenShopEstudo
+import net.developermaster.projectbase.navigation.ScreensObject
 
 @Composable
 internal fun UiScreenShopEstudo2(navController: NavHostController) {
@@ -76,7 +80,7 @@ internal fun UiScreenShopEstudo2(navController: NavHostController) {
     val categorias = remember { mutableStateListOf<ModelUiScreenShopCategoria>() }
     var showCategoryLoading by remember { mutableStateOf(true) }
 
-    val recomemded = remember { mutableStateListOf<ModelUiScreenShopItems>() }
+    val recommended = remember { mutableStateListOf<ModelUiScreenShopItems>() }
     var showRcomemdedLoading by remember { mutableStateOf(true) }
 
     //banner
@@ -103,8 +107,8 @@ internal fun UiScreenShopEstudo2(navController: NavHostController) {
     LaunchedEffect(Unit) {
         viewModel.loadRecommended()
         viewModel.recommended.observeForever {
-            recomemded.clear()
-            recomemded.addAll(it)
+            recommended.clear()
+            recommended.addAll(it)
             showRcomemdedLoading = false
         }
     }
@@ -127,7 +131,7 @@ internal fun UiScreenShopEstudo2(navController: NavHostController) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
 
-                Column() {
+                Column {
                     Text(
                         text = "Welcome back",
                         color = colorResource(id = R.color.black),
@@ -174,7 +178,7 @@ internal fun UiScreenShopEstudo2(navController: NavHostController) {
         }
         item {
 
-            SecaoTitulo(
+            TitleSection(
                 title = "Popular Products",
                 actionText = "View All"
             )
@@ -195,7 +199,7 @@ internal fun UiScreenShopEstudo2(navController: NavHostController) {
             }
         }
         item {
-            SecaoTitulo(
+            TitleSection(
                 title = "Recommended",
                 actionText = "View All"
             )
@@ -213,17 +217,25 @@ internal fun UiScreenShopEstudo2(navController: NavHostController) {
                 }
             } else {
 
-                ListaItemsShop(recomemded)
+                ListaItemsShop(recommended)
             }
         }
 
         item { Spacer(modifier = Modifier.height(100.dp)) }
     }
+
+    ButtomBarMenu(
+        modifier = Modifier
+            .fillMaxWidth(),
+        onClick = {
+            navController.navigate(ScreensObject.UiScreenShopEstudo1.route)
+        }
+    )
 }
 
 @Composable
 fun ListaCategorias(categorias: SnapshotStateList<ModelUiScreenShopCategoria>) {
-    var selectedItem by remember { mutableStateOf(-1) }
+    var selectedItem by remember { mutableIntStateOf(-1) }
 
     LazyRow(
         modifier = Modifier
@@ -372,7 +384,7 @@ fun IndicatorPoint(
 }
 
 @Composable
-fun SecaoTitulo(
+fun TitleSection(
     title: String,
     modifier: Modifier = Modifier,
     actionText: String,
@@ -400,5 +412,52 @@ fun SecaoTitulo(
             color = colorResource(R.color.purple)
         )
 
+    }
+}
+
+@Composable
+fun ButtomBarMenu(modifier: Modifier, onClick: () -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 690.dp)
+            .background(colorResource(id = R.color.purple)),
+        horizontalArrangement = Arrangement.SpaceAround
+
+    ) {
+        ButtomMenuItem(icon = painterResource(R.drawable.btn_1), text = "Explore")
+        ButtomMenuItem(icon = painterResource(R.drawable.btn_2), text = "Cart", onClick = onClick)
+        ButtomMenuItem(icon = painterResource(R.drawable.btn_3), text = "Favourite")
+        ButtomMenuItem(icon = painterResource(R.drawable.btn_4), text = "Orders")
+        ButtomMenuItem(icon = painterResource(R.drawable.btn_5), text = "Profile")
+    }
+}
+
+@Composable
+fun ButtomMenuItem(icon: Painter, text: String, onClick: (() -> Unit)? = null) {
+    Column(
+        modifier = Modifier
+            .clickable {
+                if (onClick != null) {
+                    onClick()
+                }
+            }
+            .padding(8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+
+    ) {
+
+        Icon(
+            icon,
+            contentDescription = text,
+            tint = colorResource(id = R.color.white)
+        )
+
+        Text(
+            text,
+            color = colorResource(id = R.color.white),
+            fontSize = 10.sp,
+        )
     }
 }

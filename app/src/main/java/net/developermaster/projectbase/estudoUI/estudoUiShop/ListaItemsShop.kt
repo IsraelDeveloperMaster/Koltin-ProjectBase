@@ -8,7 +8,6 @@
 
 package net.developermaster.projectbase.estudoUI.estudoUiShop
 
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -71,8 +70,6 @@ fun ListaItemsShop(items: List<ModelUiScreenShopItems>) {
 @Composable
 fun RecomendedItem(item: List<ModelUiScreenShopItems>, pos: Int) {
 
-    val context = LocalContext.current
-
     Column(
         modifier = Modifier
             .padding(8.dp)
@@ -85,7 +82,7 @@ fun RecomendedItem(item: List<ModelUiScreenShopItems>, pos: Int) {
                 .clickable { }
                 .width(175.dp)
                 .padding(8.dp)
-                .height(200.dp)
+                .height(120.dp)
                 .background(
                     colorResource(id = R.color.light_grey), shape = RoundedCornerShape(10.dp)
                 ),
@@ -99,21 +96,24 @@ fun RecomendedItem(item: List<ModelUiScreenShopItems>, pos: Int) {
             fontWeight = FontWeight.Bold,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            modifier = Modifier.padding(top = 8.dp)
+            modifier = Modifier.padding(8.dp)
         )
 
         Row(
-            modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween
+            modifier = Modifier
+                .padding(start = 8.dp)
+                .fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween
         ) {
 
             Row {
                 Image(
                     painter = painterResource(id = R.drawable.star),
                     contentDescription = "Rating",
-                    modifier = Modifier.align(Alignment.CenterVertically)
+                    modifier = Modifier
+                        .align(Alignment.CenterVertically)
                 )
 
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(4.dp))
 
                 Text(
                     text = item[pos].rating.toString(),
@@ -122,8 +122,10 @@ fun RecomendedItem(item: List<ModelUiScreenShopItems>, pos: Int) {
                     color = colorResource(id = R.color.black),
                 )
 
+                Spacer(modifier = Modifier.width(30.dp))
+
                 Text(
-                    text = "R$ ${item[pos].price}",
+                    text = "$${item[pos].price}",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     color = colorResource(id = R.color.purple),

@@ -116,8 +116,6 @@ internal fun UiScreenShopEstudo1(navController: NavHostController) {
             color = colorResource(id = R.color.black),
             textAlign = TextAlign.Center,
             lineHeight = 24.sp
-
         )
-
     }
 }
