@@ -249,10 +249,11 @@ fun ListaCategorias(navController: NavHostController, categorias: SnapshotStateL
                 item = categorias[index],
                 isSelected = selectedItem == index,
                 onClick = {
+
                     selectedItem = index
 
-                    navController.navigate(ScreensObject.UiScreenShopEstudo3.route + "/${categorias[index].title}")
-
+                    //navegação para a tela de detalhes da categoria selecionada
+                    navController.navigate(ScreensObject.UiScreenShopEstudo3.route + "/${categorias[index].id}/${categorias[index].title}")
                 },
             )
         }

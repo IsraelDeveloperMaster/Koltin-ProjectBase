@@ -29,14 +29,9 @@ import net.developermaster.projectbase.R
 import net.developermaster.projectbase.estudoUI.estudoUiShop.viewModel.ViewModelUiScreenShopEstudo
 
 @Composable
-internal fun UiScreenShopEstudo3(
-    navController: NavHostController,
-    id: String,
-    title: String,
-) {
+internal fun UiScreenShopEstudo3( navController: NavHostController, id: String, title: String, ) {
 
      val viewModel = ViewModelUiScreenShopEstudo()
-     val id: String = ""
 
     ListItemsUIShop(
         title = title,
@@ -44,7 +39,6 @@ internal fun UiScreenShopEstudo3(
         viewModel = viewModel,
         id = id
     )
-
 }
 
 @Composable
@@ -58,7 +52,7 @@ fun ListItemsUIShop(
     var isLoading by remember { mutableStateOf(true) }
 
     LaunchedEffect(id) {
-        viewModel.loadRecommended()
+        viewModel.loadFiltred(id)
     }
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -97,11 +91,8 @@ fun ListItemsUIShop(
             Column(modifier = Modifier
                 .fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally) {
-
                 Spacer(modifier = Modifier.height(300.dp))
-
                 CircularProgressIndicator()
-
             }
 
         } else {
@@ -110,7 +101,7 @@ fun ListItemsUIShop(
         }
     }
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(items) {
         isLoading = items.isEmpty()
     }
 }
