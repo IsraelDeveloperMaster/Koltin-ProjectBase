@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/IsraelDeveloperMaster/Koltin-ProjectBase/compare/v1.5.0...v1.6.0) (2025-02-21)
+
+
+### Features
+
+* Implement filtered list view and add filter by recommended items ([b50c500](https://github.com/IsraelDeveloperMaster/Koltin-ProjectBase/commit/b50c500ee604d55e64530776f25c586614003863))
+
 ## [1.5.0](https://github.com/IsraelDeveloperMaster/Koltin-ProjectBase/compare/v1.4.0...v1.5.0) (2025-02-21)
 
 
