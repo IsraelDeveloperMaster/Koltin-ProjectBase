@@ -1,4 +1,4 @@
-package com.aristidevs.cursofirebaselite.domain
+package net.developermaster.projectbase.domain
 
 import net.developermaster.projectbase.repository.Repository
 

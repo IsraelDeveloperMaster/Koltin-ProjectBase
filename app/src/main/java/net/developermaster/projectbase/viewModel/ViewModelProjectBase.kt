@@ -3,7 +3,7 @@ package net.developermaster.projectbase.viewModel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aristidevs.cursofirebaselite.domain.CanAccessToApp
+import net.developermaster.projectbase.domain.CanAccessToApp
 import com.aristidevs.cursofirebaselite.presentation.model.Artist
 import com.aristidevs.cursofirebaselite.presentation.model.Player
 import com.google.firebase.database.DataSnapshot
