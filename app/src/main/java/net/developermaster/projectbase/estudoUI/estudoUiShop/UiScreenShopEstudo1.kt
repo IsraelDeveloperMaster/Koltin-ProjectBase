@@ -119,26 +119,3 @@ internal fun UiScreenShopEstudo1(navController: NavHostController) {
         )
     }
 }
-
-@Composable
-fun ButtomMenuItem(icon: Int, title: String, onClick: () -> Unit) {
-    Column(
-        modifier = Modifier.padding(8.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Image(
-            painter = painterResource(id = icon),
-            contentDescription = null,
-            contentScale = ContentScale.Fit
-        )
-
-        Text(
-            text = title,
-            fontSize = 12.sp,
-            color = colorResource(id = R.color.black),
-            textAlign = TextAlign.Center,
-            lineHeight = 24.sp
-        )
-    }
-
-}

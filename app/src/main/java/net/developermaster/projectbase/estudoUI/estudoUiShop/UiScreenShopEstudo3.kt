@@ -28,6 +28,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -103,7 +104,7 @@ internal fun UiScreenShopEstudo3(navController: NavHostController) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
 
-                Column() {
+                Column {
                     Text(
                         text = "Welcome back",
                         color = colorResource(id = R.color.black),
@@ -175,7 +176,7 @@ internal fun UiScreenShopEstudo3(navController: NavHostController) {
 
 @Composable
 fun CategoryList(categorias: SnapshotStateList<ModelUiScreenShopCategoria>) {
-    var selectedItem by remember { mutableStateOf(-1) }
+    var selectedItem by remember { mutableIntStateOf(-1) }
     LazyRow(
         modifier = Modifier
             .fillMaxWidth(),

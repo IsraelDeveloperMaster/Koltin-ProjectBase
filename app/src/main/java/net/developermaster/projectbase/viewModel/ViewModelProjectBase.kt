@@ -25,7 +25,7 @@ import kotlinx.coroutines.withContext
 import net.developermaster.projectbase.model.Model
 import net.developermaster.projectbase.repository.Repository
 
-class ViewModelProjectBase() : ViewModel() {
+class ViewModelProjectBase : ViewModel() {
 
     private val repository = Repository()
 

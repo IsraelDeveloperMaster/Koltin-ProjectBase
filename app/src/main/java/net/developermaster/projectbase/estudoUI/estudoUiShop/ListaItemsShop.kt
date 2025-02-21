@@ -70,8 +70,6 @@ fun ListaItemsShop(items: List<ModelUiScreenShopItems>) {
 @Composable
 fun RecomendedItem(item: List<ModelUiScreenShopItems>, pos: Int) {
 
-    val context = LocalContext.current
-
     Column(
         modifier = Modifier
             .padding(8.dp)
@@ -84,7 +82,7 @@ fun RecomendedItem(item: List<ModelUiScreenShopItems>, pos: Int) {
                 .clickable { }
                 .width(175.dp)
                 .padding(8.dp)
-                .height(150.dp)
+                .height(120.dp)
                 .background(
                     colorResource(id = R.color.light_grey), shape = RoundedCornerShape(10.dp)
                 ),

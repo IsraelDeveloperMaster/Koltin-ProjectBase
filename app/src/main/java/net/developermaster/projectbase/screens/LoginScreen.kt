@@ -68,7 +68,7 @@ fun LoginScreen(autenticacao: FirebaseAuth, navigateToHome: () -> Unit) {
             Modifier.size(200.dp, 200.dp)
         )
 
-        Row() {
+        Row {
 
             Icon(
                 painter = painterResource(id = R.drawable.kotlin_icon),

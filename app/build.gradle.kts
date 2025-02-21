@@ -16,7 +16,7 @@ android {
 
     defaultConfig {
         applicationId = "net.developermaster.projectbase"
-        minSdk = 23
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -83,6 +83,8 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.realtime)
     implementation(libs.firebase.storage)
+    implementation(libs.glide)
+    implementation(libs.gson)
 
     //swipe
     implementation (libs.accompanist.swiperefresh)
@@ -95,13 +97,18 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
 
+    //accompanist
     implementation(libs.accompanist.pager.indicators)
     implementation(libs.accompanist.pager)
+
+    //lifecycle
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.runtime.livedata)
-    implementation(libs.glide)
-    implementation(libs.gson)
+
+    //constraintlayoutCompose
     implementation (libs.androidx.constraintlayout.compose)
+
+    //foundation
     implementation (libs.androidx.foundation)
 }
 
