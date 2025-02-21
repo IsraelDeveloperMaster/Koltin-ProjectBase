@@ -195,7 +195,7 @@ internal fun UiScreenShopEstudo2(navController: NavHostController) {
                     CircularProgressIndicator()
                 }
             } else {
-                ListaCategorias(categorias)
+                ListaCategorias(navController, categorias)
             }
         }
         item {
@@ -234,7 +234,7 @@ internal fun UiScreenShopEstudo2(navController: NavHostController) {
 }
 
 @Composable
-fun ListaCategorias(categorias: SnapshotStateList<ModelUiScreenShopCategoria>) {
+fun ListaCategorias(navController: NavHostController, categorias: SnapshotStateList<ModelUiScreenShopCategoria>) {
     var selectedItem by remember { mutableIntStateOf(-1) }
 
     LazyRow(
@@ -250,6 +250,9 @@ fun ListaCategorias(categorias: SnapshotStateList<ModelUiScreenShopCategoria>) {
                 isSelected = selectedItem == index,
                 onClick = {
                     selectedItem = index
+
+                    navController.navigate(ScreensObject.UiScreenShopEstudo3.route + "/${categorias[index].title}")
+
                 },
             )
         }

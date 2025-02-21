@@ -7,9 +7,11 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.google.firebase.auth.FirebaseAuth
 import net.developermaster.projectbase.screens.HomeScreen
 import net.developermaster.projectbase.screens.LoginScreen
@@ -103,12 +105,19 @@ fun NavigationNavController() {
 
                 ) + scaleOut(tween(200)) + fadeOut()
             }
-            ) {
+        ) {
             UiScreenShopEstudo2(navController)
         }
 
         //rota ui screen estudo shop 3
-        composable(ScreensObject.UiScreenShopEstudo3.route,
+        /*composable(
+            ScreensObject.UiScreenShopEstudo3.route + "/{title}/{id}",
+            arguments = listOf(navArgument("id") {
+                type = NavType.StringType
+           } ),
+            arguments = listOf(navArgument("title") {
+                type = NavType.StringType
+            } ),
 
             //transições de entrada
             enterTransition = {
@@ -124,35 +133,47 @@ fun NavigationNavController() {
         )
 
         {
-            UiScreenShopEstudo3(navController)
-        }
+            UiScreenShopEstudo3(navController,
+                it.arguments?.getString("id") ?: "",
+                it.arguments?.getString("title") ?: "",
+
+        }*/
 
 
-        /*
-        //rota
+        //rota select screen options
         composable(
-            ScreensObject.SelectScreenOptionsObject.route + "/{itemId}",
-            arguments = listOf(navArgument("itemId") {
+            ScreensObject.UiScreenShopEstudo3.route + "/{id}/{title}",
+            arguments = listOf(navArgument("id") {
+                type = NavType.StringType
+            }, navArgument("title") {
                 type = NavType.StringType
             })
+            ,
+
+            //transições de entrada
+            enterTransition = {
+                slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    tween(200)
+                ) + scaleIn(tween(200)) + fadeIn()
+            },
+
+            //transições de saída
+            exitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    tween(200)
+                ) + scaleOut(tween(200)) + fadeOut()
+            }
 
         ) {
-            SelectScreenOptions(navController, it.arguments?.getString("itemId") ?: "")
+            UiScreenShopEstudo3(
+                navController,
+                // argumentos 1
+                it.arguments?.getString("id") ?: "",
+                // argumentos 2
+                it.arguments?.getString("title") ?: "",
+            )
         }
-
-        composable(ScreensObject.PlantaPrincipalScreenObject.route) {
-            PlantaPrincipalScreen(navController)
-        }
-        composable(
-            ScreensObject.PlantaScreenObject.route + "/{planta}",
-            arguments = listOf(navArgument("planta") {
-                type = NavType.StringType
-            })
-
-        ) {
-            PlantaScreen(navController, it.arguments?.getString("planta") ?: "")
-        }
-
-        */
     }
 }
