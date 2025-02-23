@@ -28,18 +28,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import coil3.compose.AsyncImage
 import net.developermaster.projectbase.R
 import net.developermaster.projectbase.estudoUI.estudoUiShop.model.ModelUiScreenShopItems
+import net.developermaster.projectbase.navigation.ScreensObject
 
 @Composable
-fun ListarItemsShop(items: List<ModelUiScreenShopItems>) {
+fun ListarItemsShop(navController: NavHostController, items: List<ModelUiScreenShopItems>) {
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
@@ -58,14 +61,14 @@ fun ListarItemsShop(items: List<ModelUiScreenShopItems>) {
 
             ) {
 
-                RecomendedItem(items, row)
+                RecomendedItem(navController, items, row)
             }
         }
     }
 }
 
 @Composable
-fun ListarItemsShopFullSize(items: List<ModelUiScreenShopItems>) {
+fun ListarItemsShopFullSize(navController: NavHostController, items: List<ModelUiScreenShopItems>) {
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
@@ -84,14 +87,14 @@ fun ListarItemsShopFullSize(items: List<ModelUiScreenShopItems>) {
 
             ) {
 
-                RecomendedItem(items, row)
+                RecomendedItem(navController, items, row)
             }
         }
     }
 }
 
 @Composable
-fun RecomendedItem(item: List<ModelUiScreenShopItems>, pos: Int) {
+fun RecomendedItem(navController: NavHostController, item: List<ModelUiScreenShopItems>, pos: Int) {
 
     Column(
         modifier = Modifier
@@ -102,7 +105,10 @@ fun RecomendedItem(item: List<ModelUiScreenShopItems>, pos: Int) {
         AsyncImage(model = item[pos].picUrl.firstOrNull(),
             contentDescription = item[pos].title,
             modifier = Modifier
-                .clickable { }
+                .clickable {
+
+                    navController.navigate(ScreensObject.UiScreenShopEstudo4.route)
+                }
                 .width(175.dp)
                 .padding(8.dp)
                 .height(120.dp)

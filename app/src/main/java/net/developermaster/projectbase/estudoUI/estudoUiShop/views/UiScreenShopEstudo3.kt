@@ -26,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -45,12 +46,14 @@ internal fun UiScreenShopEstudo3( navController: NavHostController, id: String, 
         title = title,
         onBack = { },
         viewModel = viewModel,
-        id = id
+        id = id,
+        navController = navController
     )
 }
 
 @Composable
 fun ListItemsUIShop(
+    navController: NavHostController,
     title: String,
     onBack: () -> Unit,
     viewModel: ViewModelUiScreenShopEstudo,
@@ -105,7 +108,7 @@ fun ListItemsUIShop(
 
         } else {
 
-            ListarItemsShopFullSize(items)
+            ListarItemsShopFullSize(navController , items)
         }
     }
 

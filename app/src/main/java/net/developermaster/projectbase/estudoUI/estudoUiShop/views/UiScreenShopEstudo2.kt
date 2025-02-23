@@ -217,7 +217,7 @@ internal fun UiScreenShopEstudo2(navController: NavHostController) {
                 }
             } else {
 
-                ListarItemsShop(recommended)
+                ListarItemsShop(navController, recommended)
             }
         }
 
