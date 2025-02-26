@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/IsraelDeveloperMaster/Koltin-ProjectBase/compare/v1.6.0...v1.7.0) (2025-02-26)
+
+
+### Features
+
+* Enhance UiScreenShopEstudo4 with detailed product view ([a9b5072](https://github.com/IsraelDeveloperMaster/Koltin-ProjectBase/commit/a9b5072502ad9b47d9a0ae58986b22a1e73123f0))
+
 ## [1.6.0](https://github.com/IsraelDeveloperMaster/Koltin-ProjectBase/compare/v1.5.0...v1.6.0) (2025-02-21)
 
 
