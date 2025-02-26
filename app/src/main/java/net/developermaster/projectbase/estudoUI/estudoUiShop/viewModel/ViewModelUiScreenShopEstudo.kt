@@ -116,10 +116,11 @@ class ViewModelUiScreenShopEstudo : ViewModel() {
         })
     }
 
-    fun loadFiltred() {
+    fun loadFiltred(id : String) {
 
         val ref = firebaseDatabase.getReference("Items")
-        val query : Query = ref.orderByChild("showRecommended").equalTo(true)
+        val query : Query = ref.orderByChild("categoryId").equalTo(id)
+
         query.addListenerForSingleValueEvent(object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {

@@ -1,12 +1,12 @@
 /*
  * *
- *  * Created by rael on 20/02/2025 20:55
+ *  * Created by rael on 21/02/2025 23:27
  *  * Copyright (c) 2025 . All rights reserved.
- *  * Last modified 20/02/2025 20:43
+ *  * Last modified 21/02/2025 23:27
  *
  */
 
-package net.developermaster.projectbase.estudoUI.estudoUiShop
+package net.developermaster.projectbase.estudoUI.estudoUiShop.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -195,7 +195,7 @@ internal fun UiScreenShopEstudo2(navController: NavHostController) {
                     CircularProgressIndicator()
                 }
             } else {
-                ListaCategorias(categorias)
+                ListaCategorias(navController, categorias)
             }
         }
         item {
@@ -217,7 +217,7 @@ internal fun UiScreenShopEstudo2(navController: NavHostController) {
                 }
             } else {
 
-                ListaItemsShop(recommended)
+                ListarItemsShop(navController, recommended)
             }
         }
 
@@ -234,7 +234,7 @@ internal fun UiScreenShopEstudo2(navController: NavHostController) {
 }
 
 @Composable
-fun ListaCategorias(categorias: SnapshotStateList<ModelUiScreenShopCategoria>) {
+fun ListaCategorias(navController: NavHostController, categorias: SnapshotStateList<ModelUiScreenShopCategoria>) {
     var selectedItem by remember { mutableIntStateOf(-1) }
 
     LazyRow(
@@ -249,7 +249,11 @@ fun ListaCategorias(categorias: SnapshotStateList<ModelUiScreenShopCategoria>) {
                 item = categorias[index],
                 isSelected = selectedItem == index,
                 onClick = {
+
                     selectedItem = index
+
+                    //navegação para a tela de detalhes da categoria selecionada
+                    navController.navigate(ScreensObject.UiScreenShopEstudo3.route + "/${categorias[index].id}/${categorias[index].title}")
                 },
             )
         }

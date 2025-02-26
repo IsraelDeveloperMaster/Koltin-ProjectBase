@@ -6,7 +6,7 @@
  *
  */
 
-package net.developermaster.projectbase.estudoUI.estudoUiShop
+package net.developermaster.projectbase.estudoUI.estudoUiShop.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

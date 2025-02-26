@@ -7,17 +7,20 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.google.firebase.auth.FirebaseAuth
 import net.developermaster.projectbase.screens.HomeScreen
 import net.developermaster.projectbase.screens.LoginScreen
 import net.developermaster.projectbase.screens.RealTimeScreen
 import net.developermaster.projectbase.screens.SplashScreen
-import net.developermaster.projectbase.estudoUI.estudoUiShop.UiScreenShopEstudo1
-import net.developermaster.projectbase.estudoUI.estudoUiShop.UiScreenShopEstudo2
-import net.developermaster.projectbase.estudoUI.estudoUiShop.UiScreenShopEstudo3
+import net.developermaster.projectbase.estudoUI.estudoUiShop.views.UiScreenShopEstudo1
+import net.developermaster.projectbase.estudoUI.estudoUiShop.views.UiScreenShopEstudo2
+import net.developermaster.projectbase.estudoUI.estudoUiShop.views.UiScreenShopEstudo3
+import net.developermaster.projectbase.estudoUI.estudoUiShop.views.UiScreenShopEstudo4
 import net.developermaster.projectbase.viewModel.ViewModelProjectBase
 
 
@@ -103,56 +106,66 @@ fun NavigationNavController() {
 
                 ) + scaleOut(tween(200)) + fadeOut()
             }
-            ) {
+        ) {
             UiScreenShopEstudo2(navController)
         }
 
         //rota ui screen estudo shop 3
-        composable(ScreensObject.UiScreenShopEstudo3.route,
+        composable(
+            ScreensObject.UiScreenShopEstudo3.route + "/{id}/{title}",
+            arguments = listOf(navArgument("id") {
+                type = NavType.StringType
+            }, navArgument("title") {
+                type = NavType.StringType
+            }),
 
             //transições de entrada
             enterTransition = {
                 slideIntoContainer(
-                    AnimatedContentTransitionScope.SlideDirection.Right,
-                    tween(500)
-//                ) + slideInHorizontally(tween(200)) + fadeIn()
-//                ) + scaleIn(tween(200)) + fadeIn()
-                ) + fadeIn() + scaleIn(tween(500))
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    tween(200)
+                ) + scaleIn(tween(200)) + fadeIn()
             },
 
             //transições de saída
-        )
-
-        {
-            UiScreenShopEstudo3(navController)
-        }
-
-
-        /*
-        //rota
-        composable(
-            ScreensObject.SelectScreenOptionsObject.route + "/{itemId}",
-            arguments = listOf(navArgument("itemId") {
-                type = NavType.StringType
-            })
+            exitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    tween(200)
+                ) + scaleOut(tween(200)) + fadeOut()
+            }
 
         ) {
-            SelectScreenOptions(navController, it.arguments?.getString("itemId") ?: "")
+            UiScreenShopEstudo3(
+                navController,
+                // argumentos 1
+                it.arguments?.getString("id") ?: "",
+                // argumentos 2
+                it.arguments?.getString("title") ?: "",
+            )
         }
 
-        composable(ScreensObject.PlantaPrincipalScreenObject.route) {
-            PlantaPrincipalScreen(navController)
-        }
-        composable(
-            ScreensObject.PlantaScreenObject.route + "/{planta}",
-            arguments = listOf(navArgument("planta") {
-                type = NavType.StringType
-            })
+        //rota ui screen estudo shop 4
+        composable(ScreensObject.UiScreenShopEstudo4.route,
 
+            //transições de entrada
+            enterTransition = {
+                slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    tween(200)
+                ) + scaleIn(tween(200)) + fadeIn()
+            },
+
+            //transições de saída
+            exitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    tween(200)
+
+                ) + scaleOut(tween(200)) + fadeOut()
+            }
         ) {
-            PlantaScreen(navController, it.arguments?.getString("planta") ?: "")
+            UiScreenShopEstudo4(navController)
         }
-
-        */
     }
 }

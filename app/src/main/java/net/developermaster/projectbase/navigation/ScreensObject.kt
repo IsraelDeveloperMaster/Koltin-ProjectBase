@@ -23,4 +23,7 @@ sealed class ScreensObject(val route : String) {
 
     //rota ui screen estudo shop 3
     data object UiScreenShopEstudo3 : ScreensObject("UiScreenShopEstudo3")
+
+    //rota ui screen estudo shop 4
+    data object UiScreenShopEstudo4 : ScreensObject("UiScreenShopEstudo4")
 }

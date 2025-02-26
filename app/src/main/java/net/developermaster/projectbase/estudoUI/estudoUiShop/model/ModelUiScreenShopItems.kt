@@ -23,6 +23,7 @@ data class ModelUiScreenShopItems(
     var showRecomended: Boolean = false,
     var category: String = ""
 ) : Parcelable {
+
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
