@@ -120,6 +120,7 @@ class ViewModelUiScreenShopEstudo : ViewModel() {
 
         val ref = firebaseDatabase.getReference("Items")
         val query : Query = ref.orderByChild("categoryId").equalTo(id)
+
         query.addListenerForSingleValueEvent(object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
